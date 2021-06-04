@@ -6,10 +6,10 @@ import java.util.List;
 
 public class ConnectionInvitation {
 
-    @SerializedName("id")
+    @SerializedName("@id")
     public String id;
 
-    @SerializedName("type")
+    @SerializedName("@type")
     public String type;
 
     @SerializedName("did")

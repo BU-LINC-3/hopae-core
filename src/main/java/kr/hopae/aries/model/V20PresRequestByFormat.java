@@ -42,7 +42,7 @@ public class V20PresRequestByFormat {
         public static class NonRevoked {
 
             @SerializedName("to")
-            int to;
+            public int to;
 
         }
     }

@@ -2,6 +2,7 @@ package kr.hopae.aries.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
 import java.util.Map;
 
 public class IndyProofReqPredSpec {
@@ -19,12 +20,12 @@ public class IndyProofReqPredSpec {
     public int pValue;
 
     @SerializedName("restrictions")
-    public Map<String, Object> restrictions;
+    public List<Map<String, Object>> restrictions;
 
     public IndyProofReqPredSpec() {
     }
 
-    public IndyProofReqPredSpec(String name, V20PresRequestByFormat.Indy.NonRevoked nonRevoked, String pType, int pValue, Map<String, Object> restrictions) {
+    public IndyProofReqPredSpec(String name, V20PresRequestByFormat.Indy.NonRevoked nonRevoked, String pType, int pValue, List<Map<String, Object>> restrictions) {
         this.name = name;
         this.nonRevoked = nonRevoked;
         this.pType = pType;
