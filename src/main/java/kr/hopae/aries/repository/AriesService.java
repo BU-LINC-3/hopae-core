@@ -18,6 +18,12 @@ public interface AriesService {
             @Query("auto_accept") boolean autoAccept,
             @Body() Map<String, Object> body);
 
+    @POST("/connections/receive-invitation")
+    Call<ConnRecord> receiveInvitation(
+            @Query("alias") String alias,
+            @Query("auto_accept") boolean autoAccept,
+            @Body() ConnectionInvitation body);
+
     @POST("/schemas")
     Call<TxnOrSchemaSendResult> createSchemas(
             @Query("conn_id") String connectionId,

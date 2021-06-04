@@ -23,7 +23,7 @@ public class AriesRepository {
                 .client(new OkHttpClient().newBuilder()
                         .readTimeout(60, TimeUnit.SECONDS)
                         .build())
-                .baseUrl("http://34.64.218.185:8021")
+                .baseUrl("http://211.253.228.16:1061")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -44,6 +44,17 @@ public class AriesRepository {
     public InvitationResult createInvitation(String alias, boolean autoAccept) throws Exception {
         Call<InvitationResult> request = service.createInvitation(alias, autoAccept, new HashMap<>());
         Response<InvitationResult> response = request.execute();
+
+        if (response.code() != 200 || response.body() == null) {
+            throw new Exception(response.message());
+        }
+
+        return response.body();
+    }
+
+    public ConnRecord receiveInvitation(String alias, boolean autoAccept, ConnectionInvitation invitation) throws Exception {
+        Call<ConnRecord> request = service.receiveInvitation(alias, autoAccept, invitation);
+        Response<ConnRecord> response = request.execute();
 
         if (response.code() != 200 || response.body() == null) {
             throw new Exception(response.message());
