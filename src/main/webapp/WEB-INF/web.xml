@@ -25,7 +25,6 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/spring-config/applicationContext.xml
-            /WEB-INF/spring-config/databaseContext.xml
         </param-value>
     </context-param>
 
