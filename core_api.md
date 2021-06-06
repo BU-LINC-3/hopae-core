@@ -31,6 +31,15 @@
     - [요청](#요청-5)
     - [응답 (OK 200)](#응답-ok-200-5)
     - [응답 (Internal Server Error 500)](#응답-internal-server-error-500-5)
+- [Verifier](#verifier)
+  - [Proof 요청 ✅](#proof-요청-)
+    - [GET /api/did/verifier/prove](#get-apididverifierprove)
+    - [요청](#요청-6)
+    - [응답 (OK 200)](#응답-ok-200-6)
+  - [Proof Verified 요청 ✅](#proof-verified-요청-)
+    - [GET /api/did/verifier/verified](#get-apididverifierverified)
+    - [요청](#요청-7)
+    - [응답 (OK 200)](#응답-ok-200-7)
 
 <br/>
 
@@ -61,7 +70,7 @@
 |  Key  |  Type  |    Description     | Nullable |
 | :---: | :----: | :----------------: | :------: |
 | port  |  int   |     Agent Port     |    -     |
-| alias | String | Unique Id of Agent |    -     |
+| alias | String | Unique ID of Agent |    -     |
 
 ### 응답 (Internal Server Error 500)
 
@@ -288,3 +297,53 @@
 
 <br/>
 
+# Verifier
+
+## Proof 요청 ✅
+### GET /api/did/verifier/prove
+`(예시) /api/did/verifier/prove`
+
+<br/>
+
+### 요청
+
+| Query |  Type  |    Description     | Nullable |
+| :---: | :----: | :----------------: | :------: |
+| alias | String | Unique ID of Agent |    -     |
+
+### 응답 (OK 200)
+```
+{
+    "verified": true
+}
+```
+
+|    Key    |  Type   |  Description  | Nullable |
+| :-------: | :-----: | :-----------: | :------: |
+| verfified | boolean | Is validated? |    -     |
+
+<br/>
+## Proof Verified 요청 ✅
+### GET /api/did/verifier/verified
+`(예시) /api/did/verifier/verified?presExId=20ea7368-5ce8-4e80-9050-b61ef5d80408`
+
+<br/>
+
+### 요청
+
+|  Query  |  Type  |       Description        | Nullable |
+| :-----: | :----: | :----------------------: | :------: |
+| preExId | String | Presentation Exchange Id |    -     |
+
+### 응답 (OK 200)
+```
+{
+    "verified": true
+}
+```
+
+|    Key    |  Type   |  Description  | Nullable |
+| :-------: | :-----: | :-----------: | :------: |
+| verfified | boolean | Is validated? |    -     |
+
+<br/>
