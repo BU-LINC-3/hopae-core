@@ -323,6 +323,7 @@
 | verfified | boolean | Is validated? |    -     |
 
 <br/>
+
 ## Proof Verified 요청 ✅
 ### GET /api/did/verifier/verified
 `(예시) /api/did/verifier/verified?presExId=20ea7368-5ce8-4e80-9050-b61ef5d80408`
