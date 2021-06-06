@@ -206,7 +206,7 @@ public class IssuerController {
 
         map.put("cred_ex_id", credExRecord.credExId);
         map.put("thread_id", credExRecord.threadId);
-        map.put("created_at", credExRecord.updatedAt);
+        map.put("created_at", credExRecord.createdAt);
 
         return map;
     }
