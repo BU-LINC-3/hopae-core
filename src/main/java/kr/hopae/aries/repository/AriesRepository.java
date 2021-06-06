@@ -152,4 +152,17 @@ public class AriesRepository {
         return response.body();
     }
 
+    public boolean revokeCredential(RevokeRequest body) throws Exception {
+        Call<RevocationModuleResponse> request = service.revoke(body);
+        Response<RevocationModuleResponse> response = request.execute();
+
+        if (response.code() == 400) {
+            return false;
+        } else if (response.code() != 200) {
+            throw new Exception(response.message());
+        }
+
+        return true;
+    }
+
 }

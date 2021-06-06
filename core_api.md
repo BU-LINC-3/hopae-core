@@ -31,15 +31,20 @@
     - [요청](#요청-5)
     - [응답 (OK 200)](#응답-ok-200-5)
     - [응답 (Internal Server Error 500)](#응답-internal-server-error-500-5)
+  - [Credential Revoke 요청 ✅](#credential-revoke-요청-)
+    - [GET /api/did/issuer/revoke-credential](#get-apididissuerrevoke-credential)
+    - [요청](#요청-6)
+    - [응답 (OK 200)](#응답-ok-200-6)
 - [Verifier](#verifier)
   - [Proof 요청 ✅](#proof-요청-)
     - [GET /api/did/verifier/prove](#get-apididverifierprove)
-    - [요청](#요청-6)
-    - [응답 (OK 200)](#응답-ok-200-6)
-  - [Proof Verified 요청 ✅](#proof-verified-요청-)
-    - [GET /api/did/verifier/verified](#get-apididverifierverified)
     - [요청](#요청-7)
     - [응답 (OK 200)](#응답-ok-200-7)
+    - [응답 (Internal Server Error 500)](#응답-internal-server-error-500-6)
+  - [Proof Verified 요청 ✅](#proof-verified-요청-)
+    - [GET /api/did/verifier/verified](#get-apididverifierverified)
+    - [요청](#요청-8)
+    - [응답 (OK 200)](#응답-ok-200-8)
 
 <br/>
 
@@ -297,6 +302,32 @@
 
 <br/>
 
+## Credential Revoke 요청 ✅
+### GET /api/did/issuer/revoke-credential
+`(예시) /api/did/issuer/revoke-credential`
+
+<br/>
+
+### 요청
+
+|   Query   |  Type  |       Description        | Nullable |
+| :-------: | :----: | :----------------------: | :------: |
+| credRevId | String | Credential Revocation Id |    O     |
+| revRegId  | String |  Revocation Registry Id  |    O     |
+
+### 응답 (OK 200)
+```
+{
+    "revoked": true
+}
+```
+
+|   Key   |  Type   | Description | Nullable |
+| :-----: | :-----: | :---------: | :------: |
+| revoked | boolean | Is revoked? |    -     |
+
+<br/>
+
 # Verifier
 
 ## Proof 요청 ✅
@@ -321,6 +352,12 @@
 |    Key    |  Type   |  Description  | Nullable |
 | :-------: | :-----: | :-----------: | :------: |
 | verfified | boolean | Is validated? |    -     |
+
+### 응답 (Internal Server Error 500)
+
+| Case  |     Description     |
+| :---: | :-----------------: |
+|   *   | Invalid query value |
 
 <br/>
 

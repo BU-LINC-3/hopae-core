@@ -28,7 +28,7 @@ public class IssuerController {
         // Initialize BUAuthRepository
         BUAuthRepository buAuthRepository = new BUAuthRepository();
 
-        // Request Login
+        // Request login
         if (!buAuthRepository.requestLogin(univerGu, userId, userPw)) {
             throw new Exception("Login failure");
         }
@@ -40,10 +40,10 @@ public class IssuerController {
             throw new Exception("Login Info is not valid");
         }
 
-        // Generate alias
+        // Generate Alias
         String alias = "hopae-".concat(loginInfo.userId).concat("-").concat(UUID.randomUUID().toString());
 
-        // Set LoginInfo Attribute
+        // Set LoginInfo attribute
         session.setAttribute("LoginInfo", loginInfo);
         session.setAttribute("Alias", alias);
 
@@ -65,7 +65,7 @@ public class IssuerController {
             throw new Exception("Login Info is not valid");
         }
 
-        // Get Attributes from Session
+        // Get Attributes from session
         String alias = (String) session.getAttribute("Alias");
 
         // Create Invitation
@@ -86,7 +86,7 @@ public class IssuerController {
             throw new Exception("Login Info is not valid");
         }
 
-        // Get Attributes from Session
+        // Get attributes from session
         String alias = (String) session.getAttribute("Alias");
 
         // Receive Invitation
@@ -137,10 +137,10 @@ public class IssuerController {
             throw new Exception("Login Info is not valid");
         }
 
-        // Get Attributes from Session
+        // Get attributes from session
         String schemaId = (String) session.getAttribute("SchemaId");
 
-        // Config Credential definition
+        // Config Credential Definition
         CredentialDefinitionSendRequest creDefSendRequest = new CredentialDefinitionSendRequest();
         creDefSendRequest.revocationRegistrySize = 1000;
         creDefSendRequest.schemaId = schemaId;
@@ -169,7 +169,7 @@ public class IssuerController {
             throw new Exception("Login Info is not valid");
         }
 
-        // Get Attributes from Session
+        // Get attributes from session
         String connectionId = (String) session.getAttribute("ConnectionId");
         String schemaId = (String) session.getAttribute("SchemaId");
         String credDefId = (String) session.getAttribute("CredDefId");
@@ -200,7 +200,7 @@ public class IssuerController {
         crePropRequest.filter.indy.schemaVersion = schemaId.split(":")[3];
         crePropRequest.trace = false;
 
-        // Send credential
+        // Send Credential
         V20CredExRecord credExRecord = ariesRepository.issueCredential(crePropRequest);
         session.setAttribute("CredExId", credExRecord.credExId);
 
@@ -209,6 +209,24 @@ public class IssuerController {
         map.put("cred_ex_id", credExRecord.credExId);
         map.put("thread_id", credExRecord.threadId);
         map.put("created_at", credExRecord.createdAt);
+
+        return map;
+    }
+
+    @RequestMapping(value = "/revoke-credential", method = RequestMethod.GET)
+    public Map<String, Object> requestRevokeCredential(@RequestParam String credRevId,
+                                                       @RequestParam String revRegId) throws Exception {
+
+        // Config Revoke Request
+        RevokeRequest revokeRequest = new RevokeRequest();
+        revokeRequest.credRevId = credRevId;
+        revokeRequest.revRegId = revRegId;
+        revokeRequest.publish = true;
+
+        // Revoke Credential
+        Map<String, Object> map = new HashMap<>();
+
+        map.put("revoked", ariesRepository.revokeCredential(revokeRequest));
 
         return map;
     }

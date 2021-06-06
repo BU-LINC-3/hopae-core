@@ -54,4 +54,8 @@ public interface AriesService {
     Call<V20PresExRecord> getPresentation(
             @Path("pres_ex_id") String presExId);
 
+    @POST("/revocation/revoke")
+    Call<RevocationModuleResponse> revoke(
+            @Body() RevokeRequest body);
+
 }

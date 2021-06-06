@@ -65,7 +65,6 @@ public class VerifierController {
         // Send proof request
         V20PresExRecord presExRecord = ariesRepository.requestProof(presSendReqRequest);
 
-        // TODO: Issuer Revocation 요청 구현
         return verify(presExRecord.presExId);
     }
 
