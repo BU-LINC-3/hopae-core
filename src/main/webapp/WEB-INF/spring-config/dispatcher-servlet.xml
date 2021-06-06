@@ -13,6 +13,7 @@
     <mvc:annotation-driven/>
 
     <context:component-scan base-package="kr.hopae.aries.repository"/>
+    <context:component-scan base-package="kr.hopae.baekseok.repository"/>
     <context:component-scan base-package="kr.hopae.core.controller"/>
 
     <!--ViewResolver-->
