@@ -17,7 +17,7 @@ public class IndyProofReqPredSpec {
     public String pType;
 
     @SerializedName("p_value")
-    public int pValue;
+    public long pValue;
 
     @SerializedName("restrictions")
     public List<Map<String, Object>> restrictions;
@@ -25,7 +25,7 @@ public class IndyProofReqPredSpec {
     public IndyProofReqPredSpec() {
     }
 
-    public IndyProofReqPredSpec(String name, V20PresRequestByFormat.Indy.NonRevoked nonRevoked, String pType, int pValue, List<Map<String, Object>> restrictions) {
+    public IndyProofReqPredSpec(String name, V20PresRequestByFormat.Indy.NonRevoked nonRevoked, String pType, long pValue, List<Map<String, Object>> restrictions) {
         this.name = name;
         this.nonRevoked = nonRevoked;
         this.pType = pType;
