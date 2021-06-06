@@ -137,6 +137,10 @@ public class AriesRepository {
             throw new Exception(response.message());
         }
 
+        if (!response.body().state.equals("done")) {
+            throw new Exception("State is not done");
+        }
+
         return response.body();
     }
 
