@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.time.*;
 import java.util.*;
 
 @RestController
@@ -48,14 +49,15 @@ public class VerifierController {
         restrictions.add(restriction);
 
         presSendReqRequest.presentationRequest.indy.requestedAttributes.put(
-                "0_student_id_uuid", new IndyProofReqAttrSpec("student_id", null, null, restrictions));
-        presSendReqRequest.presentationRequest.indy.requestedAttributes.put(
-                "0_name_uuid", new IndyProofReqAttrSpec("name", null, null, restrictions));
-        presSendReqRequest.presentationRequest.indy.requestedAttributes.put(
                 "0_timestamp_uuid", new IndyProofReqAttrSpec("timestamp", null, null, restrictions));
+        presSendReqRequest.presentationRequest.indy.requestedAttributes.put("0_student_id_uuid",
+                new IndyProofReqAttrSpec("student_id", null, null, restrictions));
+        presSendReqRequest.presentationRequest.indy.requestedAttributes.put("0_name_uuid",
+                new IndyProofReqAttrSpec("name", null, null, restrictions));
+
         presSendReqRequest.presentationRequest.indy.requestedPredicates = new HashMap<>();
-        presSendReqRequest.presentationRequest.indy.requestedPredicates.put(
-                "0_temp_L_uuid", new IndyProofReqPredSpec("temp", null, "<", 375, restrictions));
+        presSendReqRequest.presentationRequest.indy.requestedPredicates.put("0_temp_L_uuid",
+                new IndyProofReqPredSpec("temp", null, "<", 375, restrictions));
 
         // Send proof request
         V20PresExRecord presExRecord = ariesRepository.requestProof(presSendReqRequest);

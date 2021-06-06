@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.*;
 
 @RestController
@@ -187,7 +189,7 @@ public class IssuerController {
         crePropRequest.credentialPreview.attributes.add(new V20CredAttrSpec(
                 null, "temp", temp));
         crePropRequest.credentialPreview.attributes.add(new V20CredAttrSpec(
-                null, "timestamp", String.valueOf(new Date().toInstant().getEpochSecond())));
+                null, "timestamp", String.valueOf(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC))));
         crePropRequest.filter = new V20CredProposalRequestPreviewMand.Filter();
         crePropRequest.filter.indy = new V20CredProposalRequestPreviewMand.Filter.Indy();
         crePropRequest.filter.indy.credDefId = credDefId;
