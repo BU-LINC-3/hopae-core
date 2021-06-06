@@ -130,6 +130,10 @@ public class AriesRepository {
     }
 
     public V20PresExRecord getPresentation(String presExId) throws Exception {
+        return getPresentation(presExId, 10);
+    }
+
+    private V20PresExRecord getPresentation(String presExId, int count) throws Exception {
         Call<V20PresExRecord> request = service.getPresentation(presExId);
         Response<V20PresExRecord> response = request.execute();
 
@@ -138,6 +142,10 @@ public class AriesRepository {
         }
 
         if (!response.body().state.equals("done")) {
+            if (count > 0) {
+                Thread.sleep(1000);
+                return getPresentation(presExId, --count);
+            }
             throw new Exception("State is not done");
         }
 
