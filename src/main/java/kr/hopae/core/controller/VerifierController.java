@@ -37,8 +37,8 @@ public class VerifierController {
         presSendReqRequest.presentationRequest = new V20PresRequestByFormat();
         presSendReqRequest.presentationRequest.indy = new V20PresRequestByFormat.Indy();
         presSendReqRequest.presentationRequest.indy.name = "Proof of Hopae Pass";
-//        presSendReqRequest.presentationRequest.indy.nonRevoked = new V20PresRequestByFormat.Indy.NonRevoked();
-//        presSendReqRequest.presentationRequest.indy.nonRevoked.to = 1622833408;
+        presSendReqRequest.presentationRequest.indy.nonRevoked = new V20PresRequestByFormat.Indy.NonRevoked();
+        presSendReqRequest.presentationRequest.indy.nonRevoked.to = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
         presSendReqRequest.presentationRequest.indy.version = "1.0";
         presSendReqRequest.presentationRequest.indy.requestedAttributes = new HashMap<>();
 
@@ -48,8 +48,6 @@ public class VerifierController {
         restriction.put("cred_def_id", creDefId);
         restrictions.add(restriction);
 
-        presSendReqRequest.presentationRequest.indy.requestedAttributes.put(
-                "0_timestamp_uuid", new IndyProofReqAttrSpec("timestamp", null, null, restrictions));
         presSendReqRequest.presentationRequest.indy.requestedAttributes.put("0_student_id_uuid",
                 new IndyProofReqAttrSpec("student_id", null, null, restrictions));
         presSendReqRequest.presentationRequest.indy.requestedAttributes.put("0_name_uuid",
@@ -58,10 +56,16 @@ public class VerifierController {
         presSendReqRequest.presentationRequest.indy.requestedPredicates = new HashMap<>();
         presSendReqRequest.presentationRequest.indy.requestedPredicates.put("0_temp_L_uuid",
                 new IndyProofReqPredSpec("temp", null, "<", 375, restrictions));
+        presSendReqRequest.presentationRequest.indy.requestedPredicates.put("0_timestamp_GE_uuid",
+                new IndyProofReqPredSpec("timestamp", null, ">=",
+                        LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0))
+                                .atZone(ZoneId.systemDefault()).toEpochSecond(),
+                        restrictions));
 
         // Send proof request
         V20PresExRecord presExRecord = ariesRepository.requestProof(presSendReqRequest);
 
+        // TODO: Issuer Revocation 요청 구현
         return verify(presExRecord.presExId);
     }
 
