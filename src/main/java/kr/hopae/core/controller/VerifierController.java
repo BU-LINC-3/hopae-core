@@ -38,7 +38,7 @@ public class VerifierController {
         presSendReqRequest.presentationRequest.indy = new V20PresRequestByFormat.Indy();
         presSendReqRequest.presentationRequest.indy.name = "Proof of Hopae Pass";
         presSendReqRequest.presentationRequest.indy.nonRevoked = new V20PresRequestByFormat.Indy.NonRevoked();
-        presSendReqRequest.presentationRequest.indy.nonRevoked.to = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+        presSendReqRequest.presentationRequest.indy.nonRevoked.to = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - 1;
         presSendReqRequest.presentationRequest.indy.version = "1.0";
         presSendReqRequest.presentationRequest.indy.requestedAttributes = new HashMap<>();
 
