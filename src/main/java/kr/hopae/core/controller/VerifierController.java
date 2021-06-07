@@ -19,7 +19,9 @@ public class VerifierController {
     private AriesRepository ariesRepository;
 
     @RequestMapping(value = "/prove", method = RequestMethod.GET)
-    public Map<String, Object> requestProof(@RequestParam String alias) throws Exception {
+    public Map<String, Object> requestProof(@RequestParam String alias,
+                                            @RequestParam String moderatorId,
+                                            @RequestParam String location) throws Exception {
 
         // Get Connections
         ConnectionList connectionList = ariesRepository.getConnections(alias);
@@ -32,7 +34,7 @@ public class VerifierController {
         // Config Request
         V20PresSendRequestRequest presSendReqRequest = new V20PresSendRequestRequest();
 
-        presSendReqRequest.comment = "string";
+        presSendReqRequest.comment = "moderator".concat("-").concat(moderatorId).concat("-").concat(location);
         presSendReqRequest.connectionId = connRecord.connectionId;
         presSendReqRequest.presentationRequest = new V20PresRequestByFormat();
         presSendReqRequest.presentationRequest.indy = new V20PresRequestByFormat.Indy();
