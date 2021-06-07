@@ -26,8 +26,8 @@ public class VerifierController {
         ConnRecord connRecord = connectionList.results.get(0);
 
         // Get Credential Definitions
-        CredentialDefinitionsCreatedResult creDefCreatedResult = ariesRepository.getCredentialDefs("hopae_pass");
-        String creDefId = creDefCreatedResult.credentialDefinitionIds.get(creDefCreatedResult.credentialDefinitionIds.size() - 1);
+        CredentialDefinitionsCreatedResult credDefCreatedResult = ariesRepository.getCredentialDefs("hopae_pass");
+        String creDefId = credDefCreatedResult.credentialDefinitionIds.get(credDefCreatedResult.credentialDefinitionIds.size() - 1);
 
         // Config Request
         V20PresSendRequestRequest presSendReqRequest = new V20PresSendRequestRequest();
