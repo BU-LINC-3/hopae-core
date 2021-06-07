@@ -310,7 +310,7 @@
 
 ### 요청
 
-|   Query   |  Type  |       Description        | Nullable |
+|   Query   |  Type  |       Description        | Required |
 | :-------: | :----: | :----------------------: | :------: |
 | credRevId | String | Credential Revocation Id |    O     |
 | revRegId  | String |  Revocation Registry Id  |    O     |
@@ -338,9 +338,11 @@
 
 ### 요청
 
-| Query |  Type  |    Description     | Nullable |
-| :---: | :----: | :----------------: | :------: |
-| alias | String | Unique ID of Agent |    -     |
+|    Query    |  Type  |    Description     | Required |
+| :---------: | :----: | :----------------: | :------: |
+|    alias    | String | Unique ID of Agent |    O     |
+| moderatorId | String |    Moderator ID    |    O     |
+|  location   | String | Moderator Location |    O     |
 
 ### 응답 (OK 200)
 ```
@@ -369,9 +371,9 @@
 
 ### 요청
 
-|  Query  |  Type  |       Description        | Nullable |
+|  Query  |  Type  |       Description        | Required |
 | :-----: | :----: | :----------------------: | :------: |
-| preExId | String | Presentation Exchange Id |    -     |
+| preExId | String | Presentation Exchange Id |    O     |
 
 ### 응답 (OK 200)
 ```
