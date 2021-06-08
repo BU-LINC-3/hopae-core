@@ -214,11 +214,13 @@ public class IssuerController {
     }
 
     @RequestMapping(value = "/revoke-credential", method = RequestMethod.GET)
-    public Map<String, Object> requestRevokeCredential(@RequestParam String credRevId,
-                                                       @RequestParam String revRegId) throws Exception {
+    public Map<String, Object> requestRevokeCredential(@RequestParam(required = false) String credExId,
+                                                       @RequestParam(required = false) String credRevId,
+                                                       @RequestParam(required = false) String revRegId) throws Exception {
 
         // Config Revoke Request
         RevokeRequest revokeRequest = new RevokeRequest();
+        revokeRequest.credExId = credExId;
         revokeRequest.credRevId = credRevId;
         revokeRequest.revRegId = revRegId;
         revokeRequest.publish = true;
