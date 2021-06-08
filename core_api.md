@@ -7,7 +7,7 @@
     - [응답 (OK 200)](#응답-ok-200)
     - [응답 (Internal Server Error 500)](#응답-internal-server-error-500)
   - [Invitation 생성 요청 ✅](#invitation-생성-요청-)
-    - [POST /api/did/issuer/create-invitation](#post-apididissuercreate-invitation)
+    - [GET /api/did/issuer/create-invitation](#get-apididissuercreate-invitation)
     - [요청](#요청-1)
     - [응답 (OK 200)](#응답-ok-200-1)
     - [응답 (Internal Server Error 500)](#응답-internal-server-error-500-1)
@@ -87,7 +87,7 @@
 <br/>
 
 ## Invitation 생성 요청 ✅
-### POST /api/did/issuer/create-invitation
+### GET /api/did/issuer/create-invitation
 `(예시) /api/did/issuer/create-invitation`
 
 <br/>
