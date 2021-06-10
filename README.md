@@ -10,7 +10,7 @@ IDE: IntelliJ IDEA Ultimate 2021.1<br/>
 <img src="img/diagram5.png"/>
 
 ## Summary
-[Google Slide]()
+[Google Slide](https://docs.google.com/presentation/d/1hxOBRRBrWIrjKF4EnZRzaZaGaHRS54hI6fGh_IULV1I/edit?usp=sharing)
 <br/>
 
 ## API 문서
