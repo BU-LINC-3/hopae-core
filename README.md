@@ -7,7 +7,7 @@ WAS: Tomcat 9.0.46<br/>
 IDE: IntelliJ IDEA Ultimate 2021.1<br/>
 
 ## 호패 API Sequence Diagram
-<img src="img/diagram4.png"/>
+<img src="img/diagram5.png"/>
 
 ## Summary
 [Google Slide]()
