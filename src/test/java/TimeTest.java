@@ -14,6 +14,11 @@ public class TimeTest {
     @Test
     public void testTime() throws Exception {
         long time = LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0)).atZone(ZoneId.systemDefault()).toEpochSecond();
+        long time1 = ZonedDateTime.of(LocalDate.now(), LocalTime.of(0, 0), ZoneId.of("Asia/Seoul")).toEpochSecond();
+        long time2 = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+        long time3 = ZonedDateTime.now(ZoneId.of("Asia/Seoul")).toEpochSecond();
+        long time4 = ZonedDateTime.now().toEpochSecond();
+        String test1 = ZoneId.systemDefault().getId();
     }
 
 }

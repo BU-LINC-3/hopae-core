@@ -137,11 +137,11 @@ public class AriesRepository {
         Call<V20PresExRecord> request = service.getPresentation(presExId);
         Response<V20PresExRecord> response = request.execute();
 
-        if (response.code() != 200 || response.body() == null) {
+        if (response.code() != 200 && response.code() != 500) {
             throw new Exception(response.message());
         }
 
-        if (!response.body().state.equals("done")) {
+        if (response.body() == null || !response.body().state.equals("done")) {
             if (count > 0) {
                 Thread.sleep(1000);
                 return getPresentation(presExId, --count);

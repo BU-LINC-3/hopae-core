@@ -40,7 +40,7 @@ public class VerifierController {
         presSendReqRequest.presentationRequest.indy = new V20PresRequestByFormat.Indy();
         presSendReqRequest.presentationRequest.indy.name = "Proof of Hopae Pass";
         presSendReqRequest.presentationRequest.indy.nonRevoked = new V20PresRequestByFormat.Indy.NonRevoked();
-        presSendReqRequest.presentationRequest.indy.nonRevoked.to = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - 1;
+        presSendReqRequest.presentationRequest.indy.nonRevoked.to = ZonedDateTime.now(ZoneId.of("Asia/Seoul")).toEpochSecond() - 1;
         presSendReqRequest.presentationRequest.indy.version = "1.0";
         presSendReqRequest.presentationRequest.indy.requestedAttributes = new HashMap<>();
 
@@ -60,8 +60,7 @@ public class VerifierController {
                 new IndyProofReqPredSpec("temp", null, "<", 375, restrictions));
         presSendReqRequest.presentationRequest.indy.requestedPredicates.put("0_timestamp_GE_uuid",
                 new IndyProofReqPredSpec("timestamp", null, ">=",
-                        LocalDateTime.of(LocalDate.now(), LocalTime.of(0, 0))
-                                .atZone(ZoneId.systemDefault()).toEpochSecond(),
+                        ZonedDateTime.of(LocalDate.now(), LocalTime.of(0, 0), ZoneId.of("Asia/Seoul")).toEpochSecond(),
                         restrictions));
 
         // Send proof request
@@ -72,10 +71,17 @@ public class VerifierController {
 
     @RequestMapping(value = "/verified", method = RequestMethod.GET)
     public Map<String, Object> verify(@RequestParam String presExId) throws Exception {
-        Map<String, Object> map = new HashMap<>();
 
         // Verify Presentation
-        map.put("verified", ariesRepository.getPresentation(presExId).verified.equals("true"));
+        V20PresExRecord v20PresExRecord = ariesRepository.getPresentation(presExId);
+
+        Map<String, Object> map = new HashMap<>();
+
+        if (v20PresExRecord == null) {
+            map.put("verified", false);
+        } else {
+            map.put("verified", ariesRepository.getPresentation(presExId).verified.equals("true"));
+        }
 
         return map;
     }

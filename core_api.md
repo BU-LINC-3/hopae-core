@@ -312,6 +312,7 @@
 
 |   Query   |  Type  |       Description        | Required |
 | :-------: | :----: | :----------------------: | :------: |
+| credEXId  | String |  Credential Exchange Id  |    O     |
 | credRevId | String | Credential Revocation Id |    O     |
 | revRegId  | String |  Revocation Registry Id  |    O     |
 
