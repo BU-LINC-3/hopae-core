@@ -204,6 +204,9 @@ public class IssuerController {
         V20CredExRecord credExRecord = ariesRepository.issueCredential(crePropRequest);
         session.setAttribute("CredExId", credExRecord.credExId);
 
+        // Check Issue Credential is done
+        ariesRepository.getCredentialRecord(credExRecord.credExId);
+
         Map<String, Object> map = new HashMap<>();
 
         map.put("cred_ex_id", credExRecord.credExId);

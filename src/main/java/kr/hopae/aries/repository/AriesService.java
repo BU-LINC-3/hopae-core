@@ -42,6 +42,10 @@ public interface AriesService {
     Call<V20CredExRecord> issueCredential(
             @Body() V20CredProposalRequestPreviewMand body);
 
+    @GET("/issue-credential-2.0/records/{cred_ex_id}")
+    Call<V20CredExRecordDetail> getCredentialRecord(
+            @Path("cred_ex_id") String credExId);
+
     @POST("/present-proof-2.0/send-request")
     Call<V20PresExRecord> requestProof(
             @Body() V20PresSendRequestRequest body);

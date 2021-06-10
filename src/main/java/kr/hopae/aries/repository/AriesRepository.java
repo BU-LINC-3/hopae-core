@@ -107,6 +107,29 @@ public class AriesRepository {
         return response.body();
     }
 
+    public V20CredExRecordDetail getCredentialRecord(String credExId) throws Exception {
+        return getCredentialRecord(credExId, 10);
+    }
+
+    private V20CredExRecordDetail getCredentialRecord(String credExId, int count) throws Exception {
+        Call<V20CredExRecordDetail> request = service.getCredentialRecord(credExId);
+        Response<V20CredExRecordDetail> response = request.execute();
+
+        if (response.code() != 200 && response.code() != 404) {
+            throw new Exception(response.message());
+        }
+
+        if (response.body() != null && !response.body().credExRecord.state.equals("done")) {
+            if (count > 0) {
+                Thread.sleep(1000);
+                return getCredentialRecord(credExId, --count);
+            }
+            throw new Exception("State is not done");
+        }
+
+        return response.body();
+    }
+
     public V20PresExRecord requestProof(V20PresSendRequestRequest body) throws Exception {
         Call<V20PresExRecord> request = service.requestProof(body);
         Response<V20PresExRecord> response = request.execute();
