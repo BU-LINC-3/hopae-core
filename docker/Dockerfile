@@ -4,7 +4,7 @@ WORKDIR /usr/local/tomcat/repo
 COPY ./* ./
 
 WORKDIR /usr/local/tomcat/repo/docker
-CMD ./batch.sh
+CMD /batch.sh
 
 WORKDIR /usr/local/tomcat/bin
 
