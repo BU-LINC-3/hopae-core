@@ -7,9 +7,9 @@ WORKDIR ./docker
 RUN ./batch.sh
 
 WORKDIR ../../bin
-RUN ./shutdown.sh
+RUN ./catalina.sh stop
 
-ENTRYPOINT ./startup.sh
+ENTRYPOINT ./catalina.sh start
 
 # RUN apt update && apt install maven -y
 # RUN mvn clean package
