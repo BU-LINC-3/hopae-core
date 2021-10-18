@@ -3,10 +3,10 @@ FROM tomcat:9.0.46
 WORKDIR /usr/local/tomcat/repo
 COPY ./* ./
 
-WORKDIR ./docker
+WORKDIR /usr/local/tomcat/repo/docker
 RUN batch.sh
 
-WORKDIR ../../bin
+WORKDIR /usr/local/tomcat/bin
 RUN catalina.sh stop
 
 ENTRYPOINT catalina.sh start
