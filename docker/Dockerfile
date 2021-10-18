@@ -4,12 +4,12 @@ WORKDIR /usr/local/tomcat/repo
 COPY ./* ./
 
 WORKDIR ./docker
-RUN ./batch.sh
+RUN batch.sh
 
 WORKDIR ../../bin
-RUN ./catalina.sh stop
+RUN catalina.sh stop
 
-ENTRYPOINT ./catalina.sh start
+ENTRYPOINT catalina.sh start
 
 # RUN apt update && apt install maven -y
 # RUN mvn clean package
