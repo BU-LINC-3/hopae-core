@@ -23,7 +23,7 @@ public class AriesRepository {
                 .client(new OkHttpClient().newBuilder()
                         .readTimeout(60, TimeUnit.SECONDS)
                         .build())
-                .baseUrl("http://211.253.228.16:1061")
+                .baseUrl("http://127.0.0.1:1061")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
