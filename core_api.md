@@ -1,4 +1,7 @@
 # 호패 코어 API 문서
+
+## [Swagger](https://app.swaggerhub.com/apis-docs/BU-Link-3/Hopae.API/1.0.0)
+
 - [호패 코어 API 문서](#호패-코어-api-문서)
 - [Issuer](#issuer)
   - [세션 생성 요청 ✅](#세션-생성-요청-)
